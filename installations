@@ -1,0 +1,47 @@
+mkdir FlaskMarket       # Creating a project Folder
+pip install flask       # installing Flask Framework
+pip install wtforms     # for forms operations and validation
+flask --version         # Check or confirming if Flask was installed correctly
+set FLASK_APP=app.py    # Setting your flask app for execution(export FLASK_APP=app.py for LINUX USERS)
+flask run               # Initiating Execution
+set FLASK_DEBUG=1       # to enable automatic refresh and save changes without having you restart the server all the Time
+pip install flask-sqlalchemy # using SQLALchemy for creating Database
+python                  # to use the Python shell to perform SQL queries and database Operations
+
+
+pip install email_validator # for emails validations
+pip install flask_bcrypt
+pip install flask_login
+pip install flask_admin
+pip install Flask-BasicAuth
+pip install flask_security
+from market import db   # Initializing a database a DataBase
+db.create_all()         # Database
+
+from market import Item # importing a database class from market
+ite1 = Item(name= "Iphone 10", price=500, barcode="57578389503923", description="desc") # assigning values to the database class
+db.session.add(item1)   # Initializing the database
+db.session.commit()     # saving to the Database
+
+Item.query.all()        # querying Data
+
+for item in Item.query.all():   # querying the entire table using for loop
+    item.name
+    item.id
+    item.price
+    item.description
+    item.barcode
+
+Item.query.filter_by(price=500)     # this returns an object of selecting a particular row in the database
+db.drop_all()           # dropping the entire table
+db.session.rollback()   # one step backward on every commit
+
+
+
+LINKS
+https://www.youtube.com/watch?v=NYWEf9bZhHQ
+https://www.youtube.com/watch?v=lTLFIe115Pg
+https://www.youtube.com/watch?v=2dEM-s3mRLE&list=RDCMUC-QDfvrRIDB6F0bIO4I4HkQ&index=2
+https://www.youtube.com/watch?v=TLgVEBuQURA&list=RDCMUC-QDfvrRIDB6F0bIO4I4HkQ&index=3
+https://www.youtube.com/watch?v=nQH8zAwJHUE
+https://www.youtube.com/watch?v=lTLFIe115Pg&t=99s

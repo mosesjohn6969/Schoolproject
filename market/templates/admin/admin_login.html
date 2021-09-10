@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} Admin Login Page{% endblock %}
+
+{% block link %}<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/signin.css') }}">{% endblock %}
+
+
+
+{% block styles %}
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+{% endblock %}
+
+
+
+
+{% block content %}
+<body class="text-center">
+    <main class="form-signin" style="align-items:center; justify-content:center">
+      <form method="POST" class="form-signin" style="color:white">
+          {{ form.hidden_tag() }}
+                <img class="mb-4" src="{{url_for('static', filename='images/auth/Login.svg')}}"  alt="" width="200" height="200">
+                <h1 class="h3 mb-3 fw-normal">Please sign in as Admin</h1>
+
+                <div class="form-floating" style="color:black; margin-bottom:5px">
+                    {{ form.username(class="form-control", placeholder="User Name", id="floatingInput", type="label") }}
+                  <label for="floatingInput">Email address</label>
+                </div>
+
+                <div class="form-floating" style="color:black; margin-bottom:5px">
+                    {{ form.password(class="form-control", placeholder="Password", type="password", id="floatingPassword") }}
+                  <label for="floatingPassword">Password</label>
+                </div>
+
+                {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
+                <p class="mt-5 mb-3 text-muted">&copy; 2020–2021</p>
+
+      </form>
+    </main>
+</body>
+{% endblock %}

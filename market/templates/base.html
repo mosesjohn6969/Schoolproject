@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+      <meta name="generator" content="Hugo 0.87.0">
+      <!-- Bootstrap CSS -->
+      <!-- CSS only -->
+
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+
+
+      <!-- CSS only -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <title>
+         {% block title %}
+         {% endblock %}
+      </title>
+         {% block link %}
+         {% endblock %}
+
+      <style>
+         {% block style %}
+         {% endblock %}
+      </style>
+   </head>
+   <body>
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+         <div class="container-xl">
+
+         <a class="navbar-brand" href="{{ url_for('home_page') }}">Kick-Bay</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            {% if current_user.is_authenticated %}
+
+
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('market_page') }}">Black-Market</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('cart_page') }}">Cart</a>
+               </li>
+            </ul>
+
+            <ul class="navbar-nav">
+               <li class="nav-item">
+                  <a class="nav-link" style="color: lawngreen; font-weight:bold">
+                  <i class="ni ni-air-baloon"></i>
+                  {{ current_user.prettier_budget }}
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" >Welcome, {{ current_user.full_name }}</a>
+               </li>
+               <li class="nav-item">
+                  <a class="btn btn-md btn-danger center" href="{{ url_for('logout_page') }}">Logout</a>
+               </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav">
+               <li class="nav-item" style="padding-right:10px">
+                  <a class="btn btn-primary btn-md center" href="{{ url_for('login_page')}}">Login</a>
+               </li>
+               <li class="nav-item">
+                  <a class="btn btn-secondary btn-md center" href="{{ url_for('register_page') }}">Register</a>
+               </li>
+            </ul>
+            {% endif %}
+         </div>
+             </div>
+      </nav>
+
+      <div style="margin-top:3%">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+         <div class="alert alert-{{category}} alert-dismissible fade show" style="z-index: 20; margin-Left:600px; margin-right:600px" role="alert">
+            <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            {{message}}
+         </div>
+
+
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+         </div>
+      <h1>
+         {% block heading %}
+         {% endblock %}
+      </h1>
+      {% block table %}
+      {% endblock %}
+
+      {% block content %}
+
+      {% endblock %}
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <!-- JavaScript Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+      <script type="text/javascript">
+         window.setTimeout(function() {
+             $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                 $(this).remove();
+             });
+         }, 2000);
+       </script>
+
+   </body>
+   <style>
+
+   </style>
+</html>

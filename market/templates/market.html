@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title %}Market Page{% endblock %}
+
+{% block table %}
+<div class="row" style="margin-top:200px; margin-left:60px; margin-right:60px; padding-left:60px; padding-right:60px" >
+   <div class="col-8" style="Padding-top:90px; padding-left:60px">
+      <h2>ITEMS IN THE CART</h2>
+      <p>Click on one of the items to Own Them</p>
+      <br>
+      <table class="table table-hover table-dark">
+         <thead>
+            <tr>
+               <!-- Your Columns HERE -->
+               <th scope="col">ID</th>
+               <th scope="col">NAME</th>
+               <th scope="col">BARCODE</th>
+               <th scope="col">PRICE</th>
+               <th scope="col">OPTIONS</th>
+            </tr>
+         </thead>
+         <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for item in items %}
+            {% include 'includes/items_modals.html' %}
+            <tr>
+               <td>{{item.id}}</td>
+               <td>{{item.name}}</td>
+               <td>{{item.barcode}}</td>
+               <td>₦{{item.price}}</td>
+               <td>
+                  <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id }}">More Info</button>
+                  <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-PurchaseConfirm-{{ item.id }}">Own this item</button>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+   <div class="col-4" style="Padding-top:90px; padding-right:60px">
+      <h2 style="color:white">OWNED ITEMS</h2>
+      <p style="color:white">Click on sell items to put an item back on the Market</p>
+      <br>
+      <div class="row">
+          {% for owned_item in owned_items %}
+          {% include 'includes/owned_items_modal.html' %}
+
+            <div class="col-md-6">
+                 <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                      <div class="card-body">
+                          <h5 class="card-title" style="color:white">{{ owned_item.name }}</h5>
+                          <a class="btn btn-outline-success" style="margin-bottom: 5px"
+                                  href="{{ url_for('checkout_page') }}">
+                              Checkout
+                          </a>
+                          <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px ;color:white"
+                                  data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+                              Sell this Item
+                          </button>
+                          <p class="card-text"><strong style="color:white">
+                              This item costs ₦{{ owned_item.price }}
+                          </strong></p>
+                      </div>
+                  </div>
+             </div>
+         {% endfor %}
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<!-- FOOTER -->
+
+<div class="b-example-divider"></div>
+<div class="container-xxl">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-2">
+        <h5>Lets Help You</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Help Center</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">How to shop with us</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Delivery </a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Timeline</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Report a Product</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>About us</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Terms and Conditions</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Make money</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Join our DA Academy</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Become a Vendor Service Provider</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Become a Logistic Partner</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Join our KLO Academy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 offset-1">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of whats new and exciting from us.</p>
+          <div class="d-flex w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between py-4 my-4 border-top">
+      <p>&copy; 2021 Company, Inc. All rights reserved.</p>
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+{% endblock %}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+<style>
+   body {
+   background-color: #212121;
+   color: white
+   }
+</style>
+</html>
+

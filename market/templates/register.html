@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Page{% endblock %}
+
+{% block link %}<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/register.css') }}">{% endblock %}
+{% block content %}
+<body>
+    <form method="POST" class="form-signin" style="color:white">
+      {{ form.hidden_tag() }}
+      <div class="text-center mb-4">
+          <img class="mb-4" src="{{url_for('static', filename='images/auth/Register.svg')}}"  alt="" width="172" height="157">
+            <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+      </div>
+
+
+        <div class="form-floating" style="color:black; margin-bottom:5px">
+              {{ form.full_name(class="form-control", placeholder="Fullname Name", id="floatingfull_name", type="label") }}
+            <label for="floatingfull_name">Full Name</label>
+        </div>
+
+
+        <div class="form-floating" style="color:black; margin-bottom:5px">
+            {{ form.email_address(class="form-control", placeholder="Email Address", id="floatingEmail", type="label") }}
+          <label for="floatingEmail">Email address</label>
+        </div>
+
+      <div class="form-floating" style="color:black; margin-bottom:5px">
+          {{ form.username(class="form-control", placeholder="User Name", id="floatingUserName", type="label") }}
+        <label for="floatingUserName">Username</label>
+      </div>
+
+        <div class="form-floating" style="color:black; margin-bottom:5px">
+          {{ form.gender(class="form-control", placeholder="User Name", id="floatingUserName", type="label") }}
+            <label for="floatingUserName">Select Gender</label>
+      </div>
+
+
+
+        <div class="form-floating" style="color:black; margin-bottom:5px">
+          {{ form.password1(class="form-control", placeholder="Password", id="floatingPassword1", type="password") }}
+        <label for="floatingPassword1">Password</label>
+      </div>
+
+
+        <div class="form-floating" style="color:black; margin-bottom:10px">
+          {{ form.password2(class="form-control", placeholder="Confirm Password", id="floatingPassword2", type="password") }}
+        <label for="floatingPassword2">Confirm Password</label>
+      </div>
+
+        <div class="checkbox mb-3" style="margin-bottom:10px">
+               <p class="text-center">Already have an account? <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a></p>
+
+        </div>
+        {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2020-2021</p>
+    </form>
+  </body>
+{% endblock %}
+
